@@ -20,5 +20,7 @@ Route::get('/', function () {
     ]);
 });
 
-Route::get('about', fn () => $fail);
+Route::get('/about', function () {
+    return Inertia::render('About');
+});
 
