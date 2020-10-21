@@ -4,7 +4,7 @@
       <inertia-link href="/" class="link">Hello world</inertia-link>
       <inertia-link href="/about" class="link">About</inertia-link>
     </div>
-    <h1 class="text-2xl mt-2">Hello {{ name }}</h1>
+    <h1 class="text-2xl mt-2">About</h1>
   </div>
 </template>
 

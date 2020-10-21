@@ -1,4 +1,5 @@
 const mix = require('laravel-mix');
+const PurgeIconsPlugin = require('purge-icons-webpack-plugin').default
 
 /*
  |--------------------------------------------------------------------------
@@ -28,7 +29,10 @@ mix
                 vue$: 'vue/dist/vue.runtime.esm.js',
                 '@': path.resolve('resources/js')
             }
-        }
+        },
+        plugins: [
+            new PurgeIconsPlugin()
+        ]
     })
     .sourceMaps()
     .version();
