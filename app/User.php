@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'description', 'avatar',
     ];
 
     /**
@@ -36,4 +36,21 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    protected static function booted()
+    {
+        static::creating(function (self $user) {
+            if(! $user->avatar) {
+                $user->avatar = $user->getAvatarUrl();
+            }
+        });
+    }
+
+    public function getAvatarUrl(string $default = 'mp', int $size = 80)
+    {
+        return sprintf(
+            'https://www.gravatar.com/avatar/%s?d=%s&s=%s',
+            md5(strtolower(trim($this->email))), urldecode($default), $size
+        );
+    }
 }
