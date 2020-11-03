@@ -25,8 +25,30 @@ module.exports = {
         mono: [...fontFamily.mono, 'Inter var', 'Noto Sans TC'],
       },
     },
+    customForms: theme => ({
+      default: {
+        'input, textarea, select': {
+          width: theme('width.full'),
+          borderColor: theme('colors.gray.300'),
+          '&:focus': {
+            borderColor: theme('colors.purple.500'),
+            boxShadow: `0 0 0 1px ${theme('colors.purple.500')}`,
+          },
+        },
+        'checkbox, radio': {
+          color: theme('colors.purple.500'),
+          borderColor: theme('colors.gray.300'),
+          '&:focus': {
+            borderColor: theme('colors.purple.500'),
+            boxShadow: `0 0 0 1px ${theme('colors.purple.500')}`,
+          },
+        },
+      },
+    }),
   },
-  variants: {},
+  variants: {
+    backgroundColor: ['responsive', 'hover', 'focus', 'disabled'],
+  },
   plugins: [
     require('@tailwindcss/ui'),
     require('@tailwindcss/custom-forms'),

@@ -2,6 +2,11 @@ import Vue from 'vue'
 import VueMeta from 'vue-meta'
 import { InertiaApp } from '@inertiajs/inertia-vue'
 import PurgeIconsVue from 'purge-icons-vue'
+import { InertiaProgress } from '@inertiajs/progress'
+
+InertiaProgress.init({
+    color: '#ac94fa'
+  })
 
 Vue.use(InertiaApp)
 Vue.use(VueMeta)

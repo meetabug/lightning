@@ -3,6 +3,8 @@
 
 @import 'tailwindcss/components';
 @import 'components';
+@import 'form';
+@import 'button';
 
 @import 'purge-icons-vue';
 

@@ -16,10 +16,8 @@
         </h1>
 
         <nav>
-          <ul
-            class="flex text-sm md:text-base space-x-1 md:space-x-4 items-center"
-          >
-            <template v-if="true">
+          <ul class="flex text-sm md:text-base space-x-1 md:space-x-4 items-center">
+            <template v-if="!user">
               <li>
                 <inertia-link
                   href="/login"
@@ -52,13 +50,9 @@
                     </button>
                   </template>
                   <template #menu="{ close }">
-                    <dropdown-item
-                      href="/"
-                      icon="heroicons-outline:logout"
-                      @click="close"
-                    >
-                      登出
-                    </dropdown-item>
+                   <dropdown-item href="/logout" method="post" icon="heroicons-outline:logout" @click="close">
+                    登出
+                  </dropdown-item>
                   </template>
                 </dropdown>
               </li>
@@ -85,12 +79,13 @@ export default {
   },
   data() {
     return {
-      user: {
-        name: "Lucas",
-        avatar:
-          "https://secure.gravatar.com/avatar/5d4a86f77c616178756fc10ad9344315",
-      },
+
     };
   },
+  computed: {
+    user() {
+      return this.$page.auth?.user
+    }
+  }
 };
 </script>

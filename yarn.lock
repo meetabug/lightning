@@ -859,6 +859,13 @@
   dependencies:
     axios "^0.19.0 || ^0.20.0"
 
+"@inertiajs/progress@^0.2.1":
+  version "0.2.1"
+  resolved "https://registry.npm.taobao.org/@inertiajs/progress/download/@inertiajs/progress-0.2.1.tgz#d03294a06f661ddb269f7505585974b017fd4e82"
+  integrity sha1-0DKUoG9mHdsmn3UFWFl0sBf9ToI=
+  dependencies:
+    nprogress "^0.2.0"
+
 "@mrmlnc/readdir-enhanced@^2.2.1":
   version "2.2.1"
   resolved "https://registry.npm.taobao.org/@mrmlnc/readdir-enhanced/download/@mrmlnc/readdir-enhanced-2.2.1.tgz#524af240d1a360527b730475ecfa1344aa540dde"
@@ -4863,6 +4870,11 @@ npm-run-path@^2.0.0:
   integrity sha1-NakjLfo11wZ7TLLd8jV7GHFTbF8=
   dependencies:
     path-key "^2.0.0"
+
+nprogress@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.npm.taobao.org/nprogress/download/nprogress-0.2.0.tgz#cb8f34c53213d895723fcbab907e9422adbcafb1"
+  integrity sha1-y480xTIT2JVyP8urkH6UIq28r7E=
 
 nth-check@^1.0.2:
   version "1.0.2"

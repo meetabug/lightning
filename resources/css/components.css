@@ -5,3 +5,8 @@
       @apply text-purple-700;
     }
   }
+
+/* Card */
+.card {
+  @apply bg-white rounded-lg shadow;
+}
