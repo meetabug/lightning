@@ -15,6 +15,9 @@ use Illuminate\Support\Facades\Auth;
 */
 Auth::routes(['reset' => false]);
 
+Route::get('user/setting','User\UserController@edit');
+Route::put('user','User\UserController@update');
+
 Route::get('/', function () {
     return Inertia::render('HelloWorld',[
         'name' => 'demo',
