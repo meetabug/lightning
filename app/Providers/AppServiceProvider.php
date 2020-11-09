@@ -5,6 +5,7 @@ namespace App\Providers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\ServiceProvider;
 use Inertia\Inertia;
+use App\Presenters\UserPresenter;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -35,7 +36,7 @@ class AppServiceProvider extends ServiceProvider
         Inertia::share([
             'title' => config('app.name'),
             'auth'  => fn () => [
-                'user' => Auth::user(),
+                'user' => UserPresenter::make(Auth::user())->get(),
             ],
         ]);
     }
