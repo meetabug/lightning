@@ -20,6 +20,8 @@ Route::put('user','User\UserController@update');
 Route::delete('user','User\UserController@destroy');
 Route::get('user/{user}','User\ProfileController@index');
 
+Route::resource('posts', 'Post\PostController');
+
 Route::get('/', function () {
     return Inertia::render('HelloWorld',[
         'name' => 'demo',

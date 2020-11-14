@@ -3,6 +3,8 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class Post extends Model
@@ -35,5 +37,12 @@ class Post extends Model
     public function author()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function setThumbnailAttribute($thumbnail)
+    {
+        $this->attributes['thumbnail'] = $thumbnail instanceof UploadedFile
+            ? Storage::url($thumbnail->store('posts'))
+            : $thumbnail;
     }
 }

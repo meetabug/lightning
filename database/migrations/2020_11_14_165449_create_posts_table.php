@@ -18,7 +18,7 @@ class CreatePostsTable extends Migration
             $table->string('title');
             $table->string('description');
             $table->text('content');
-            $table->string('thumbnial')->nullable();
+            $table->string('thumbnail')->nullable();
             $table->unsignedInteger('visits')->default(0);
             $table->boolean('published')->default(false);
             $table->foreignId('author_id')->constrained('users')->onDelete('cascade');
