@@ -34,6 +34,17 @@ class Post extends Model
     {
         $this->description = Str::limit(preg_replace('/\r|\n/','', $this->content), 80);
     }
+
+    public function scopePublished($query)
+    {
+        return $query->where('published', true);
+    }
+
+    public function scopeUnpublished($query)
+    {
+        return $query->where('published', false);
+    }
+
     public function author()
     {
         return $this->belongsTo(User::class);
