@@ -64,8 +64,13 @@ class User extends Authenticatable
 
     public function setAvatarAttribute($avatar)
     {
-        $this->attributes['avatar'] = $avatar instanceof UploadedFile 
+        $this->attributes['avatar'] = $avatar instanceof UploadedFile
             ? Storage::url($avatar->store('avatars'))
             : $avatar;
+    }
+
+    public function posts()
+    {
+        $this->hasMany(Post::class, 'author_id');
     }
 }
