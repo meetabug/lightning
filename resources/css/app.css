@@ -6,6 +6,7 @@
 @import 'form';
 @import 'button';
 @import 'mavonEditor';
+@import 'pagination';
 
 @import 'purge-icons-vue';
 

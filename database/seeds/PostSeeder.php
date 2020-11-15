@@ -13,7 +13,7 @@ class PostSeeder extends Seeder
      */
     public function run()
     {
-        factory(Post::class, 12)->make()->each(function (Post $post) {
+        factory(Post::class, 60)->make()->each(function (Post $post) {
             User::inRandomOrder()->first()->posts()->save($post);
         });
     }

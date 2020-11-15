@@ -19,6 +19,8 @@ class Post extends Model
         'author_id' => 'integer',
     ];
 
+    protected $perPage = 10;
+
     protected static function booted()
     {
         static::creating(function (self $post) {

@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Pagination\Paginator;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\ServiceProvider;
 use Inertia\Inertia;
@@ -17,8 +19,13 @@ class AppServiceProvider extends ServiceProvider
     public function register()
     {
         $this->registerInertia();
+        $this->registerLengthAwarePaginator();
     }
 
+    protected function registerLengthAwarePaginator()
+    {
+        $this->app->bind(LengthAwarePaginator::class, Paginator::class);
+    }
     /**
      * Bootstrap any application services.
      *
