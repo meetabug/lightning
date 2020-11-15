@@ -21,6 +21,14 @@ class PostPresenter extends FlexiblePresenter
         ];
     }
 
+    public function presetList()
+    {
+        return $this->with(fn (Post $post) => [
+            'author' => fn () => UserPresenter::make($post->author)
+            ->only('id', 'name', 'avatar')
+            ->get(),
+        ]);
+    }
     public function presetShow()
     {
         return $this->with(fn (Post $post) => [

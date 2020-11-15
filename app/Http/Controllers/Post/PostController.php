@@ -19,7 +19,36 @@ class PostController extends Controller
 
     public function index()
     {
-        //
+        $posts = $this->user()
+            ->posts()
+            ->published()
+            ->latest()
+            ->get();
+
+        return Inertia::render('Post/List', [
+           'type' => 'published',
+           'typeText' => '文章',
+           'posts' => PostPresenter::collection($posts)
+                ->preset('list')
+                ->get(),
+        ]);
+    }
+
+    public function drafts()
+    {
+        $posts = $this->user()
+            ->posts()
+            ->unpublished()
+            ->latest()
+            ->get();
+
+        return Inertia::render('Post/List', [
+            'type' => 'drafts',
+            'typeText' => '草稿',
+            'posts' => PostPresenter::collection($posts)
+                ->preset('list')
+                ->get(),
+        ]);
     }
 
 
