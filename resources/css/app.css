@@ -5,6 +5,7 @@
 @import 'components';
 @import 'form';
 @import 'button';
+@import 'mavonEditor';
 
 @import 'purge-icons-vue';
 

@@ -22,6 +22,7 @@ Route::get('user/{user}','User\ProfileController@index');
 
 Route::resource('posts', 'Post\PostController')->except('show');
 Route::get('posts/{post}', 'Post\ShowPost');
+Route::post('upload/mavon-editor-image','UploadController@mavonEidtorImage');
 
 Route::get('/', function () {
     return Inertia::render('HelloWorld',[
