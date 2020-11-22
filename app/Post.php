@@ -83,4 +83,9 @@ class Post extends Model
 
         return $this->isLikedCache;
     }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
 }

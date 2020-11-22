@@ -29,6 +29,10 @@ Route::get('posts/{post}', 'Post\ShowPost');
 Route::post('upload/mavon-editor-image','UploadController@mavonEidtorImage');
 Route::post('posts/{post}/like', 'Post\PostController@like');
 
+// Comments
+Route::resource('posts.comments', 'Post\CommentController')->shallow()
+    ->only('store', 'destroy');
+
 Route::get('/', 'Post\ShowPostList');
 
 Route::get('/about', function () {

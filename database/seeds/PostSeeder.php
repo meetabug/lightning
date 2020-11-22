@@ -3,6 +3,7 @@
 use Illuminate\Database\Seeder;
 use App\Post;
 use App\User;
+use App\Comment;
 
 class PostSeeder extends Seeder
 {
@@ -15,6 +16,13 @@ class PostSeeder extends Seeder
     {
         factory(Post::class, 60)->make()->each(function (Post $post) {
             User::inRandomOrder()->first()->posts()->save($post);
+
+            factory(Comment::class, random_int(0, 3))->make()
+                ->each(function (Comment $comment) use ($post) {
+                    $comment->commenter()->associate(User::inRandomOrder()->first());
+                    $comment->post()->associate($post);
+                    $comment->save();
+                });
         });
     }
 }
