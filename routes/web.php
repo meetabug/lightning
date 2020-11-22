@@ -25,11 +25,7 @@ Route::get('posts/drafts', 'Post\PostController@drafts');
 Route::get('posts/{post}', 'Post\ShowPost');
 Route::post('upload/mavon-editor-image','UploadController@mavonEidtorImage');
 
-Route::get('/', function () {
-    return Inertia::render('HelloWorld',[
-        'name' => 'demo',
-    ]);
-});
+Route::get('/', 'Post\ShowPostList');
 
 Route::get('/about', function () {
     return Inertia::render('About');
