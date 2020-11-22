@@ -11,7 +11,7 @@ use Inertia\Inertia;
 class ProfileController extends Controller
 {
     public function index(User $user){
-        $user->loadCount('publishedPosts');
+        $user->loadCount('publishedPosts', 'likedPosts');
 
         return Inertia::render('User/Profile',[
             'pageTitle' => "$user->name 的文章",
@@ -25,7 +25,28 @@ class ProfileController extends Controller
                         ->paginate()
                 )->preset('list'),
                 'postsCount' => $user->published_posts_count,
+                'likesCount' => $user->liked_posts_count,
             ])->get(),
+        ]);
+    }
+
+    public function likes(User $user)
+    {
+        $user->loadCount('publishedPosts', 'likedPosts');
+
+        return Inertia::render('User/Profile', [
+           'pageTitle' => "$user->name 喜欢的文章",
+           'type' => 'likes',
+           'user' => UserPresenter::make($user)->with(fn (User $user) => [
+               'posts' => PostPresenter::collection(
+                   $user->likedPosts()
+                       ->with('author')
+                       ->latest('pivot_created_at')
+                       ->paginate()
+               )->preset('list'),
+               'postsCount' => $user->published_posts_count,
+               'likesCount' => $user->liked_posts_count,
+           ])->get(),
         ]);
     }
 }

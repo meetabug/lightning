@@ -6,9 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use Multicaret\Acquaintances\Traits\CanBeLiked;
 
 class Post extends Model
 {
+    use CanBeLiked;
+
     protected $fillable = [
         'title', 'description', 'content', 'thumbnail', 'visits', 'published',
     ];

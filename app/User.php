@@ -8,10 +8,11 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
+use Multicaret\Acquaintances\Traits\CanLike;
 
 class User extends Authenticatable
 {
-    use Notifiable;
+    use Notifiable, CanLike;
 
     /**
      * The attributes that are mass assignable.
@@ -77,5 +78,10 @@ class User extends Authenticatable
     public function publishedPosts()
     {
         return $this->posts()->published();
+    }
+
+    public function likedPosts()
+    {
+        return $this->likes(Post::class)->published();
     }
 }

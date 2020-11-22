@@ -20,6 +20,7 @@ class PostPresenter extends FlexiblePresenter
             'created_at' => optional($this->created_at)->format('Y-m-d H:i:s'),
             'created_ago' => optional($this->created_at)->diffForHumans(),
             'published' => $this->published,
+            'likes' => $this->likersCountReadable(),
         ];
     }
 
@@ -31,6 +32,7 @@ class PostPresenter extends FlexiblePresenter
             ->get(),
         ]);
     }
+
     public function presetShow()
     {
         return $this->with(fn (Post $post) => [
@@ -42,6 +44,7 @@ class PostPresenter extends FlexiblePresenter
                 'update' => $this->userCan('update', $post),
                 'delete' => $this->userCan('delete', $post),
             ],
+            'is_liked' => $this->user() ? $post->isLikedBy($this->user()) : false,
         ]);
     }
 }
