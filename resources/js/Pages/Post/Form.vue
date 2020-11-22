@@ -5,6 +5,14 @@
             <div class="w-12 mt-1 mx-auto border-b-4 border-purple-400"></div>
 
             <div class="grid gap-6 mt-6">
+                <inertia-link v-if="isEdit" :href="`/posts/${post.id}`" class="link">
+                    <icon class="text-purple-500" icon="heroicons-outline:book-open" />
+                    <span>檢視文章</span>
+                </inertia-link>
+                <inertia-link href="/posts" class="link">
+                    <icon class="text-purple-500" icon="heroicons-outline:view-list" />
+                    <span>文章列表</span>
+                </inertia-link>
                 <text-input v-model="form.title" :error="$page.errors.title" label="標題" ref="titleInput" autocomplete="off" />
                 <markdown-input v-model="form.content" :error="$page.errors.content" label="內容" class="min-w-0" />                <file-input v-model="form.thumbnail" :error="$page.errors.thumbnail" accept="image/*" label="分享預覽圖片" browseText="選擇圖片" />
                 <img v-if="post.thumbnail" :src="post.thumbnail" class="max-w-xs rounded shadow">
@@ -57,11 +65,14 @@ export default {
         }
     },
     computed: {
+        isEdit() {
+          return Boolean(this.post.id)
+        },
         pageTitle() {
-            return '撰寫文章'
+            return this.isEdit ? '编辑文章' : '撰写文章'
         },
         btnText() {
-            return '儲存文章'
+            return this.isEdit ? '更新文章' : '保存文章'
         }
     },
     methods: {
@@ -70,8 +81,9 @@ export default {
             for (const key in this.form) {
                 data.append(key, this.form[key] || '')
             }
+            if (this.isEdit) data.append('_method', 'put')
 
-            this.$inertia.post('/posts', data, {
+            this.$inertia.post(this.isEdit ? `/posts/${this.post.id}` : 'posts', data, {
                 onStart: () => this.loading = true,
                 onFinish: () => this.loading = false,
                 onSuccess: () => {
@@ -83,7 +95,9 @@ export default {
         }
     },
     mounted() {
-        this.$refs.titleInput.focus()
+        if (! this.isEdit){
+            this.$refs.titleInput.focus()
+        }
     }
 }
 </script>
