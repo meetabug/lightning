@@ -29,9 +29,7 @@ class PostController extends Controller
         return Inertia::render('Post/List', [
            'type' => 'published',
            'typeText' => '文章',
-           'posts' => PostPresenter::collection($posts)
-                ->preset('list')
-                ->get(),
+           'posts' => PostPresenter::collection($posts)->get(),
         ]);
     }
 
@@ -46,9 +44,7 @@ class PostController extends Controller
         return Inertia::render('Post/List', [
             'type' => 'drafts',
             'typeText' => '草稿',
-            'posts' => PostPresenter::collection($posts)
-                ->preset('list')
-                ->get(),
+            'posts' => PostPresenter::collection($posts)->get(),
         ]);
     }
 

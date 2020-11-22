@@ -44,7 +44,7 @@ class PostPresenter extends FlexiblePresenter
                 'update' => $this->userCan('update', $post),
                 'delete' => $this->userCan('delete', $post),
             ],
-            'is_liked' => $this->user() ? $post->isLikedBy($this->user()) : false,
+            'is_liked' => $post->is_liked,
         ]);
     }
 }

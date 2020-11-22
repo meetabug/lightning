@@ -14,11 +14,18 @@ class ShowPost extends Controller
     {
         $this->authorize('view', $post);
 
-        $post->increment('visits');
+        $this->incrementVisit($post);
 
+        $post->load(['author' => fn ($query) => $query->withCount('publishedPosts', 'likedPosts')]);
         return Inertia::render('Post/Show', [
             'post' => PostPresenter::make($post)
                 ->preset('show')
+                ->get(),
+            'postOnlyLikes' => PostPresenter::make($post)
+                ->only('likes')
+                ->with(fn (Post $post) => [
+                    'is_liked' => $post->is_liked,
+                ])
                 ->get(),
         ]);
     }
